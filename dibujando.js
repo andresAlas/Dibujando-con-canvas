@@ -1,12 +1,16 @@
-var dibujo, canvas;
+var dibujo, canvas, t, b;
 
 function inicio()
 {
+	t = document.getElementById("texto");
+	b = document.getElementById("boton");
 	dibujo = document.getElementById("dibujito");
 	canvas = dibujo.getContext("2d");
 
+	b.addEventListener("click", grillaDiagonal);
+
 	//dibujarGrilla(canvas);
-	grillaDiagonal(canvas);
+	//grillaDiagonal(canvas);
 
 	canvas.beginPath();
 	canvas.strokeStyle = "black";
@@ -19,28 +23,29 @@ function inicio()
 	canvas.closePath();
 
 	canvas.beginPath();
-	canvas.strokeStyle = "blue";
-	canvas.arc(250,250,100,(Math.PI *2),false);
-	canvas.fillStyle = "blue"; 
+	canvas.fillStyle = "green"; 
+	canvas.arc(250,250,100,(Math.PI * 2), false);
     canvas.fill(); 
 	canvas.stroke();
 	canvas.closePath();
 }
 
-/*function dibujarGrilla(c)
+function dibujarGrilla()
 {
+	c = canvas;
+	var rayas = Number(t.value);
 	var ancho = 500, alto = 500;
 	var linea;
-	var lineas = 50;
-	var limiteX = ancho / lineas;
-	var limiteY = alto / lineas;
+	var anchoLinea = ancho / rayas;
+	var limiteX = ancho / anchoLinea;
+	var limiteY = alto / anchoLinea;
 
 	for(linea = 0; linea <= limiteX; linea++)
 	{
 		c.beginPath();
 		c.strokeStyle = "black";
-		c.moveTo(linea * 50, 0);
-		c.lineTo(linea * 50, 500);
+		c.moveTo(linea * anchoLinea, 0);
+		c.lineTo(linea * anchoLinea, 500);
 		c.stroke();
 		c.closePath();
 	}
@@ -48,18 +53,20 @@ function inicio()
 	for(linea = 0; linea <= limiteY; linea++)
 	{
 		c.beginPath();
-		c.moveTo(0 , linea * 50);
-		c.lineTo(500, linea * 50);
+		c.moveTo(0 , linea * anchoLinea);
+		c.lineTo(500, linea * anchoLinea);
 		c.stroke();
 		c.closePath();
 	}
-}*/
+}
 
 function grillaDiagonal(c)
 {
+	var c = canvas;
+	var rayas = Number(t.value);
     var ancho = 500, alto = 500;
     var linea;
-    var anchoLinea = 50;
+    var anchoLinea = ancho / rayas;
     var limiteX = ancho / anchoLinea;
     var limiteY = alto / anchoLinea;
 
@@ -103,11 +110,12 @@ for(linea = 0; linea <= limiteX; linea++)
 for(linea = 1; linea <= limiteY; linea++)
 {
     var punto = linea * anchoLinea; 
-    
+
     c.beginPath();
     c.moveTo(punto, alto);
     c.lineTo(alto, punto);
     c.stroke();
     c.closePath();
 }
+
 }
