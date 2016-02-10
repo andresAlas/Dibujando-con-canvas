@@ -8,6 +8,7 @@ function inicio()
 	canvas = dibujo.getContext("2d");
 
 	b.addEventListener("click", grillaDiagonal);
+	b.addEventListener("click", dibujarGrilla);
 
 	//dibujarGrilla(canvas);
 	//grillaDiagonal(canvas);
